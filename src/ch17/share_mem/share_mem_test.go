@@ -68,6 +68,7 @@ func TestCounterTreadSafe(t *testing.T) {
 
 /*
 通过增加等待组，来实现当全部执行完毕后，继续往下执行
+
 */
 func TestCounterWaitGroup(t *testing.T) {
 
@@ -84,7 +85,9 @@ func TestCounterWaitGroup(t *testing.T) {
 
 			/* 使用defer保证锁忘记被释放，导致程序被挂起 */
 			defer func() {
+				panic("something wrong")
 				mut.Unlock()
+
 			}()
 			mut.Lock()
 			counter++
